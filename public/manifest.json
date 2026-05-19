@@ -4,6 +4,7 @@
   "short_name": "InstaFill",
   "version": "1.0.0",
   "description": "Instantly fill forms with mock data. Handles cascading dropdowns and semantic field matching for efficient testing.",
+  "default_locale": "en",
   "icons": {
     "16": "images/icon-16.png",
     "48": "images/icon-48.png",
@@ -33,7 +34,6 @@
     {
       "matches": ["<all_urls>"],
       "js": [
-        "data-generator.js",
         "content.js"
       ],
       "all_frames": true,

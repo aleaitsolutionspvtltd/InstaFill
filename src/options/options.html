@@ -175,10 +175,32 @@
                 <input type="text" id="settings-email-domain" class="form-input" placeholder="e.g. yopmail.com, tempmail.com, zohomail.com">
                 <p class="input-hint">Custom domain used when generating random email addresses.</p>
               </div>
+              <div class="form-group">
+                <label for="settings-password-length">Default Password Length</label>
+                <input type="number" id="settings-password-length" class="form-input" placeholder="e.g. 12" min="6" max="64">
+                <p class="input-hint">Length of randomly generated passwords (default is 16).</p>
+              </div>
+              <div class="form-group">
+                <label for="settings-ignore-selectors">Ignored CSS Selectors (Comma Separated)</label>
+                <input type="text" id="settings-ignore-selectors" class="form-input" placeholder="e.g. #coupon-code, .do-not-fill">
+                <p class="input-hint">InstaFill will completely ignore fields matching these selectors.</p>
+              </div>
               <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Save Settings</button>
               </div>
             </form>
+          </div>
+
+          <div class="card" style="max-width: 600px; margin-top: 20px;">
+            <div class="card-header">
+              <h2>Data Management</h2>
+              <p class="subtitle">Backup and restore your configurations and Vault data</p>
+            </div>
+            <div class="dashboard-form" style="display: flex; gap: 15px; margin-top: 10px;">
+              <button id="btn-export-data" class="btn btn-secondary">Export Configuration</button>
+              <button id="btn-import-data" class="btn btn-secondary">Import Configuration</button>
+              <input type="file" id="file-import-data" accept=".json" style="display: none;">
+            </div>
           </div>
         </section>
       </main>

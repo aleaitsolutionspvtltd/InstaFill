@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * MockFill - Popup Controller
  * Connects UI actions to content scripts and chrome storage.

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * InstaFill - Service Worker (Background Script)
  * Manages context menu registrations, keyboard hotkeys, and script injections.
@@ -67,7 +68,7 @@ async function safeSendMessage(tabId, tabUrl, messagePayload) {
     try {
       await chrome.scripting.executeScript({
         target: { tabId: tabId, allFrames: true },
-        files: ['data-generator.js', 'content.js']
+        files: ['content.js']
       });
 
       setTimeout(() => {
@@ -88,11 +89,11 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   const tabUrl = tab.url || "";
 
   switch (info.menuItemId) {
-    case "mockfill_autofill":
+    case "instafill_autofill":
       await safeSendMessage(tabId, tabUrl, { type: "AUTO_FILL" });
       break;
 
-    case "mockfill_save":
+    case "instafill_save":
       try {
         const response = await chrome.tabs.sendMessage(tabId, { type: "GET_CURRENT_VALUES" });
         if (response && response.fields && response.fields.length > 0) {
@@ -110,14 +111,14 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
             fields: response.fields
           };
           await chrome.storage.local.set({ [stateId]: vaultPayload });
-          console.log("MockFill state saved successfully via context menu.");
+          console.log("InstaFill state saved successfully via context menu.");
         }
       } catch (err) {
         await safeSendMessage(tabId, tabUrl, { type: "GET_CURRENT_VALUES" });
       }
       break;
  
-    case "mockfill_load":
+    case "instafill_load":
       try {
         const allData = await chrome.storage.local.get(null);
         const vaultKeys = Object.keys(allData).filter(k => k.startsWith('vault_'));
@@ -138,7 +139,7 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
       }
       break;
 
-    case "mockfill_reset":
+    case "instafill_reset":
       await safeSendMessage(tabId, tabUrl, { type: "RESET_FORM" });
       break;
   }

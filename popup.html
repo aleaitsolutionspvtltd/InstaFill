@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InstaFill</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%20fill%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22glowGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%236366f1%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M256%2032%20L448%20144%20L448%20368%20L256%20480%20L64%20368%20L64%20144%20Z%22%20fill%3D%22url%28%23glowGrad%29%22%2F%3E%3Cpath%20d%3D%22M256%2064%20L416%20160%20L416%20352%20L256%20448%20L96%20352%20L96%20160%20Z%22%20fill%3D%22%2305070c%22%2F%3E%3Cpath%20d%3D%22M256%20128%20L320%20224%20L272%20224%20L288%20384%20L192%20256%20L240%20256%20Z%22%20fill%3D%22url%28%23glowGrad%29%22%2F%3E%3Cpath%20d%3D%22M370%20120%20L380%20145%20L405%20155%20L380%20165%20L370%20190%20L360%20165%20L335%20155%20L360%20145%20Z%22%20fill%3D%22%2338bdf8%22%2F%3E%3C%2Fsvg%3E">
+  
+  <!-- Premium Font integration -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="mockfill-container">
+    <!-- Header Area -->
+    <header class="mockfill-header">
+      <div class="logo-area">
+        <!-- Brand vector logo -->
+        <svg class="logo-icon" width="28" height="28" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#6366f1" />
+              <stop offset="100%" stop-color="#a855f7" />
+            </linearGradient>
+          </defs>
+          <!-- Rounded Hexagonal Outer Contour -->
+          <path d="M256 32 L448 144 L448 368 L256 480 L64 368 L64 144 Z" fill="url(#glowGrad)" />
+          <path d="M256 64 L416 160 L416 352 L256 448 L96 352 L96 160 Z" fill="#0a0e17" />
+          <!-- Stylized central glowing magic bolt (resembles input and filling lightning) -->
+          <path d="M256 128 L320 224 L272 224 L288 384 L192 256 L240 256 Z" fill="url(#glowGrad)" />
+          <!-- Star sparkle accents -->
+          <path d="M370 120 L380 145 L405 155 L380 165 L370 190 L360 165 L335 155 L360 145 Z" fill="#38bdf8" />
+        </svg>
+        <div class="logo-text">
+          <h1>MOCK<span class="gradient-text">FILL</span></h1>
+          <p class="tagline">Intelligent Form Mocking</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dashboard Area -->
+    <main>
+      <!-- Stats widgets Card -->
+      <section class="stats-card card">
+        <div class="stats-row">
+          <span class="stat-group url-group">
+            <span class="label">Target Address</span>
+            <span class="url-wrapper">
+              <span id="current-url" class="value url-value">Detecting tab location...</span>
+              <button id="btn-copy-url" class="btn-icon-only copy-btn" title="Copy URL">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              </button>
+            </span>
+          </span>
+        </div>
+        <div class="stat-group box">
+          <span class="label">Inputs Found</span>
+          <span id="fields-count" class="value number-value">-</span>
+        </div>
+      </section>
+
+      <!-- Primary Action Trigger -->
+      <section class="action-section margin-top-sm">
+        <button id="btn-autofill" class="btn btn-primary" disabled>
+          <span class="loader hidden"></span>
+          <span class="btn-text">⚡ Auto Fill Current Page</span>
+        </button>
+      </section>
+
+      <!-- Storage Vault local persist Card -->
+      <section class="storage-section card margin-top-sm">
+        <div class="section-title">
+          <h3>LOCAL PERSISTENCE VAULT</h3>
+          <a href="#" id="link-manage-vault" class="text-link">Manage Vault ↗</a>
+        </div>
+
+        <!-- Matching Saved States List -->
+        <div id="matching-vault-states" class="matching-vault-states hidden">
+          <!-- Dynamically populated via popup.js -->
+        </div>
+
+        <div class="save-vault-container">
+          <input type="text" id="vault-save-name" class="override-input margin-bottom-sm hidden" placeholder="Enter a name for this state (e.g. Test Flow 1)">
+          <button id="btn-save" class="btn btn-secondary" disabled>
+            <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+            </svg>
+            Save Filled Data
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Operational Messages / Logs -->
+    <footer class="mockfill-footer margin-top-sm">
+      <div id="log-message" class="log-panel">
+        Select autofill or context menu options to begin.
+      </div>
+      
+      <div class="grid-2">
+        <button id="btn-reset" class="btn btn-secondary" disabled>
+          <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+          Reset Fields
+        </button>
+        <button id="btn-settings" class="btn btn-secondary">
+          <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Settings
+        </button>
+      </div>
+
+      <div class="footer-meta">
+        MockFill • Version 1.0.0 • Open Source MIT
+      </div>
+    </footer>
+  </div>
+
+  <!-- Inactive Restricted Overlay Screen -->
+  <div id="inactive-overlay" class="overlay hidden">
+    <div class="overlay-content">
+      <svg class="warning-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m0-6v2m0-6H5.14a2 2 0 00-1.64.9l-6 10A2 2 0 005.14 21h13.72a2 2 0 001.64-3.1l-6-10A2 2 0 0012 3z" />
+      </svg>
+      <h3>MockFill Inactive</h3>
+      <p>This extension cannot interact with Chrome settings, system pages, or Web Store forms due to security rules.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="popup.js"></script>
+</body>
+</html>

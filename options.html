@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InstaFill Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%20fill%3D%22none%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22glowGrad%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%236366f1%22%2F%3E%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23a855f7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M256%2032%20L448%20144%20L448%20368%20L256%20480%20L64%20368%20L64%20144%20Z%22%20fill%3D%22url%28%23glowGrad%29%22%2F%3E%3Cpath%20d%3D%22M256%2064%20L416%20160%20L416%20352%20L256%20448%20L96%20352%20L96%20160%20Z%22%20fill%3D%22%2305070c%22%2F%3E%3Cpath%20d%3D%22M256%20128%20L320%20224%20L272%20224%20L288%20384%20L192%20256%20L240%20256%20Z%22%20fill%3D%22url%28%23glowGrad%29%22%2F%3E%3Cpath%20d%3D%22M370%20120%20L380%20145%20L405%20155%20L380%20165%20L370%20190%20L360%20165%20L335%20155%20L360%20145%20Z%22%20fill%3D%22%2338bdf8%22%2F%3E%3C%2Fsvg%3E">
+  <!-- Premium Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="logo-area">
+        <svg class="logo-icon" width="36" height="36" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#6366f1" />
+              <stop offset="100%" stop-color="#a855f7" />
+            </linearGradient>
+          </defs>
+          <path d="M256 32 L448 144 L448 368 L256 480 L64 368 L64 144 Z" fill="url(#glowGrad)" />
+          <path d="M256 64 L416 160 L416 352 L256 448 L96 352 L96 160 Z" fill="#0a0e17" />
+          <path d="M256 128 L320 224 L272 224 L288 384 L192 256 L240 256 Z" fill="url(#glowGrad)" />
+          <path d="M370 120 L380 145 L405 155 L380 165 L370 190 L360 165 L335 155 L360 145 Z" fill="#38bdf8" />
+        </svg>
+        <div class="logo-text">
+          <h1>INSTA<span class="gradient-text">FILL</span></h1>
+          <p class="tagline">Advanced Form Filler Dashboard</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="log-message" class="log-banner"></span>
+      </div>
+    </header>
+
+    <div class="dashboard-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="dashboard-sidebar">
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="vault">
+            <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+            </svg>
+            Persistence Vault
+          </button>
+          <button class="nav-item" data-tab="overrides">
+            <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Field Overrides
+          </button>
+          <button class="nav-item" data-tab="settings">
+            <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Global Settings
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="dashboard-main">
+        <!-- Persistence Vault Tab -->
+        <section id="tab-vault" class="tab-content active">
+          <div class="card">
+            <div class="card-header">
+              <h2>Local Persistence Vault</h2>
+              <p class="subtitle">View, edit, and refill saved form session payloads</p>
+            </div>
+            
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Custom Name</th>
+                    <th>Target URL</th>
+                    <th>Saved Date/Time</th>
+                    <th>Total Fields</th>
+                    <th class="actions-col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="vault-table-body">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+              <div id="vault-empty-state" class="empty-state hidden">
+                <svg class="empty-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                </svg>
+                <p>No states preserved in the local persistence vault yet.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Custom Overrides Tab -->
+        <section id="tab-overrides" class="tab-content">
+          <div class="grid-2col">
+            <!-- Add/Edit Form -->
+            <div class="card">
+              <div class="card-header">
+                <h2 id="override-form-title">Add Field Override</h2>
+                <p class="subtitle">Directly bind a custom text value to a semantic keyword</p>
+              </div>
+              <form id="override-form" class="dashboard-form">
+                <div class="form-group">
+                  <label for="override-key">Semantic Field Key</label>
+                  <input type="text" id="override-key" class="form-input" placeholder="e.g. email, zip, website, first_name" required>
+                  <p class="input-hint">The key used to identify target inputs (case-insensitive).</p>
+                </div>
+                <div class="form-group">
+                  <label for="override-value">Custom Value</label>
+                  <input type="text" id="override-value" class="form-input" placeholder="e.g. tester@example.com, 10001, John" required>
+                  <p class="input-hint">This value will bypass the random data generator.</p>
+                </div>
+                <div class="form-actions">
+                  <button type="button" id="btn-cancel-edit" class="btn btn-secondary hidden">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Save Mapping</button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Existing Overrides List -->
+            <div class="card">
+              <div class="card-header">
+                <h2>Active Overrides</h2>
+                <p class="subtitle">Mappings currently loaded in active memory</p>
+              </div>
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Keyword</th>
+                      <th>Custom Value</th>
+                      <th class="actions-col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="overrides-table-body">
+                    <!-- Dynamically populated -->
+                  </tbody>
+                </table>
+                <div id="overrides-empty-state" class="empty-state hidden">
+                  <svg class="empty-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 21l8.904-4.452L18 18l4.5-9-9 4.5 1.404-1.404" />
+                  </svg>
+                  <p>No active field overrides configured yet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Global Settings Tab -->
+        <section id="tab-settings" class="tab-content">
+          <div class="card" style="max-width: 600px;">
+            <div class="card-header">
+              <h2>Global Automation Settings</h2>
+              <p class="subtitle">Customize default random generation constraints for all fields</p>
+            </div>
+            <form id="settings-form" class="dashboard-form">
+              <div class="form-group">
+                <label for="settings-phone-prefix">Default Phone Number Prefix</label>
+                <input type="text" id="settings-phone-prefix" class="form-input" placeholder="e.g. +91, +1, +5">
+                <p class="input-hint">This code will be prepended in front of all randomly filled phone values.</p>
+              </div>
+              <div class="form-group">
+                <label for="settings-email-domain">Default Email Domain Extension</label>
+                <input type="text" id="settings-email-domain" class="form-input" placeholder="e.g. yopmail.com, tempmail.com, zohomail.com">
+                <p class="input-hint">Custom domain used when generating random email addresses.</p>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Settings</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Detail Modal for Viewing/Editing Vault Field Values -->
+  <div id="vault-modal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modal-title">Vault Entry Details</h3>
+        <button id="btn-close-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-info-row">
+          <span><strong>Saved Name:</strong> <span id="modal-info-name">-</span></span>
+          <span><strong>Associated Host:</strong> <span id="modal-info-url">-</span></span>
+        </div>
+        <div class="vault-fields-edit-container">
+          <h4>Field Bindings</h4>
+          <div id="modal-fields-list" class="modal-fields-list">
+            <!-- Populated via Javascript -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-save-modal-changes" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <p>Developed by <strong>AleaIt Solutions</strong></p>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

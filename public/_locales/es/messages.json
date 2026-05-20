@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "InstaFill"
+  },
+  "extensionDescription": {
+    "message": "Una extensión profesional de autocompletado de formularios para desarrolladores."
+  },
+  "fillFormButton": {
+    "message": "Rellenar Formulario"
+  },
+  "settingsTitle": {
+    "message": "Configuración de InstaFill"
+  }
+}

@@ -1,3 +1,5 @@
+// @ts-nocheck
+import RandExp from 'randexp';
 /**
  * MockFill - Data Generator
  * Provides highly realistic, region-profiled (US and India),
@@ -66,6 +68,16 @@ class MockFillDataGenerator {
     // Establish random region profile
     this.region = Math.random() > 0.5 ? 'in' : 'us';
     this.dataset = this[this.region];
+  }
+
+  // Generate string from custom Regex
+  regex(pattern) {
+    try {
+      const randexp = new RandExp(pattern);
+      return randexp.gen();
+    } catch (e) {
+      return `[Regex Error: ${e.message}]`;
+    }
   }
 
   _randomItem(array) {
@@ -179,7 +191,7 @@ class MockFillDataGenerator {
     }
   }
 
-  password() {
+  password(length = 16) {
     const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const lowercase = "abcdefghijklmnopqrstuvwxyz";
     const numbers = "0123456789";
@@ -189,7 +201,7 @@ class MockFillDataGenerator {
     let pwd = charSets.map(set => this._randomItem(set)).join('');
     
     const allChars = uppercase + lowercase + numbers + symbols;
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < (length - 4); i++) {
       pwd += this._randomItem(allChars);
     }
     
@@ -266,8 +278,4 @@ class MockFillDataGenerator {
   }
 }
 
-// Global hooks
-window.MockFillDataGenerator = MockFillDataGenerator;
-// Legacy aliases for backward compatibility
-window.AleaDataGenerator = MockFillDataGenerator;
-window.AuraDataGenerator = MockFillDataGenerator;
+export { MockFillDataGenerator };

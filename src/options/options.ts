@@ -1,3 +1,4 @@
+// @ts-nocheck
 document.addEventListener('DOMContentLoaded', () => {
   // DOM Elements
   const navItems = document.querySelectorAll('.nav-item');
@@ -374,9 +375,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- GLOBAL SETTINGS LOGIC ---
   async function loadSettings() {
     try {
-      const result = await chrome.storage.local.get(['settings_phone_prefix', 'settings_email_domain']);
+      const result = await chrome.storage.local.get(['settings_phone_prefix', 'settings_email_domain', 'settings_password_length', 'ignored_selectors']);
       document.getElementById('settings-phone-prefix').value = result.settings_phone_prefix || '';
       document.getElementById('settings-email-domain').value = result.settings_email_domain || '';
+      document.getElementById('settings-password-length').value = result.settings_password_length || 16;
+      document.getElementById('settings-ignore-selectors').value = (result.ignored_selectors || []).join(', ');
     } catch (err) {
       console.error("Settings loading failed:", err);
     }
@@ -388,16 +391,75 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const prefix = document.getElementById('settings-phone-prefix').value.trim();
       const domain = document.getElementById('settings-email-domain').value.trim();
+      const pwdLength = parseInt(document.getElementById('settings-password-length').value, 10) || 16;
+      
+      const selectorsRaw = document.getElementById('settings-ignore-selectors').value;
+      const ignoredSelectors = selectorsRaw.split(',').map(s => s.trim()).filter(s => s !== '');
 
       try {
         await chrome.storage.local.set({
           'settings_phone_prefix': prefix,
-          'settings_email_domain': domain
+          'settings_email_domain': domain,
+          'settings_password_length': pwdLength,
+          'ignored_selectors': ignoredSelectors
         });
         showLog("Global settings saved successfully!");
       } catch (err) {
         showLog("Failed to write settings to local storage.", true);
       }
+    });
+  }
+
+  // --- DATA MANAGEMENT (IMPORT/EXPORT) ---
+  const btnExport = document.getElementById('btn-export-data');
+  const btnImport = document.getElementById('btn-import-data');
+  const fileImport = document.getElementById('file-import-data');
+
+  if (btnExport) {
+    btnExport.addEventListener('click', async () => {
+      try {
+        const allData = await chrome.storage.local.get(null);
+        const dataStr = JSON.stringify(allData, null, 2);
+        const blob = new Blob([dataStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `instafill_backup_${new Date().toISOString().split('T')[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        showLog("Configuration exported successfully!");
+      } catch (err) {
+        showLog("Failed to export configuration.", true);
+      }
+    });
+  }
+
+  if (btnImport && fileImport) {
+    btnImport.addEventListener('click', () => fileImport.click());
+
+    fileImport.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        try {
+          const json = JSON.parse(event.target.result);
+          await chrome.storage.local.clear();
+          await chrome.storage.local.set(json);
+          
+          showLog("Configuration imported successfully! Reloading...");
+          setTimeout(() => window.location.reload(), 1500);
+        } catch (err) {
+          showLog("Invalid backup file. Import failed.", true);
+        }
+      };
+      reader.readAsText(file);
+      fileImport.value = '';
     });
   }
 

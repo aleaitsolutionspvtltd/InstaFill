@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       try {
         await chrome.scripting.executeScript({
           target: { tabId: activeTab.id, allFrames: true },
-          files: ['data-generator.js', 'content.js']
+          files: ['content.js']
         });
         
         // Retry request after small delay

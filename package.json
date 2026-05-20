@@ -18,6 +18,7 @@
     "@types/chrome": "^0.1.42",
     "@types/jest": "^30.0.0",
     "@types/puppeteer": "^5.4.7",
+    "ajv": "^8.20.0",
     "babel-jest": "^30.4.1",
     "copy-webpack-plugin": "^14.0.0",
     "eslint": "^9.39.4",

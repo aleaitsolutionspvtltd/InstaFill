@@ -337,30 +337,21 @@
 
       <!-- Actions -->
       <div class="actions">
-        <button class="button button-primary" onclick="openOptions()">
+        <button id="btn-open-settings" class="button button-primary">
           ⚙️ Open Settings
         </button>
-        <button class="button button-secondary" onclick="closeWelcome()">
+        <button id="btn-close-welcome" class="button button-secondary">
           Got It, Let's Go!
         </button>
       </div>
     </div>
 
     <div class="footer">
-      <p>Need help? Check out our <a href="#" onclick="alert('Documentation coming soon!'); return false;">documentation</a> or visit <a href="#" onclick="alert('Support page coming soon!'); return false;">support</a></p>
+      <p>Need help? Check out our <a href="#" id="link-doc">documentation</a> or visit <a href="#" id="link-support">support</a></p>
       <p style="margin-top: 8px;">Version 1.0.0 | Made with ❤️ for developers</p>
     </div>
   </div>
 
-  <script>
-    function openOptions() {
-      chrome.runtime.openOptionsPage();
-      window.close();
-    }
-
-    function closeWelcome() {
-      window.close();
-    }
-  </script>
+  <script src="welcome.js"></script>
 </body>
 </html>

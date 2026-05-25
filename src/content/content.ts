@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { MockFillDataGenerator } from '../data-generator/data-generator';
+import { InstaFillDataGenerator } from '../data-generator/data-generator';
 import { getFormElements, filterInteractiveElements, generateUniqueSelector } from './dom-utils';
 import { detectFieldType } from './semantic-detector';
 import { 
@@ -8,8 +8,8 @@ import {
 } from './injectors';
 
 (function () {
-  if (window.MockFillInitialized) return;
-  window.MockFillInitialized = true;
+  if (window.InstaFillInitialized) return;
+  window.InstaFillInitialized = true;
 
   // Check if an element matches any ignored selector
   function isIgnored(el, ignoredSelectors) {
@@ -30,7 +30,7 @@ import {
     const ignoredSelectors = storageResult.ignored_selectors || []; // FEATURE: Ignore Fields
     const passwordLength = storageResult.settings_password_length || 16;
 
-    const generator = new MockFillDataGenerator();
+    const generator = new InstaFillDataGenerator();
     generator.customPhonePrefix = phonePrefix;
     generator.customEmailDomain = emailDomain;
     
@@ -144,7 +144,7 @@ import {
           case 'textarea': val = generator.paragraph(); break;
           case 'text':
           default:
-            val = "MockFill Demo";
+            val = "InstaFill Demo";
             break;
         }
 

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { MockFillDataGenerator } from '../data-generator/data-generator';
+import { InstaFillDataGenerator } from '../data-generator/data-generator';
 
 // Find user-defined custom override mapping
 export function findOverrideValue(element, fieldType, overrides) {
@@ -238,7 +238,7 @@ export async function fillCustomCombobox(comboboxEl, targetValue = null, fieldTy
 
     // Smart fallback for state matching if option lists only state codes (e.g. full name "New York" -> matches "NY")
     if (!selectedOption && fieldType === 'state') {
-      const generator = new MockFillDataGenerator();
+      const generator = new InstaFillDataGenerator();
       const address = generator.addressDataset();
       const isIndia = /india|\bin\b/i.test(cleanTarget);
       const stateCode = (isIndia ? generator.addressDataset('IN').stateCode : address.stateCode).toLowerCase();

@@ -1,10 +1,10 @@
-import { MockFillDataGenerator } from '../src/data-generator/data-generator';
+import { InstaFillDataGenerator } from '../src/data-generator/data-generator';
 
-describe('MockFillDataGenerator', () => {
+describe('InstaFillDataGenerator', () => {
   let generator;
 
   beforeEach(() => {
-    generator = new MockFillDataGenerator();
+    generator = new InstaFillDataGenerator();
   });
 
   test('should generate a full name', () => {

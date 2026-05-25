@@ -1,6 +1,6 @@
 // @ts-nocheck
 /**
- * MockFill - Popup Controller
+ * InstaFill - Popup Controller
  * Connects UI actions to content scripts and chrome storage.
  */
 
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     btnSave.disabled = true;
     if (btnClearAll) btnClearAll.disabled = true;
     btnReset.disabled = true;
-    updateLog("MockFill is offline on this page.", true);
+    updateLog("InstaFill is offline on this page.", true);
   }
 
   // --- URL COPY HANDLER ---

@@ -58,7 +58,7 @@ async function safeSendMessage(tabId, tabUrl, messagePayload) {
     tabUrl.includes('chromewebstore.google.com');
 
   if (isRestricted) {
-    console.warn("MockFill cannot run on restricted page:", tabUrl);
+    console.warn("InstaFill cannot run on restricted page:", tabUrl);
     return;
   }
 

@@ -1,4 +1,4 @@
-# Privacy Policy for InstaFill (MockFill)
+# Privacy Policy for InstaFill
 
 **Last updated:** May 19, 2026
 
@@ -14,6 +14,7 @@ The Extension uses your browser's local storage (`chrome.storage.local`) exclusi
 *   **`activeTab` & `scripting`:** Used solely to inject the mock data into the forms on the specific page you are currently testing.
 *   **`contextMenus`:** Used to provide a right-click menu for quick access to the extension's tools.
 *   **`storage`:** Used exclusively for your local persistence vault.
+*   **`tabs`:** Used to identify the current tab URL and match locally saved form states with open tabs so saved values can be restored to the correct page. Tab information is processed locally and is never collected, transmitted, or sold.
 *   **`Host Permissions (<all_urls>)`:** Required because the extension must be able to inject mock data on arbitrary development, staging, and production URLs that you choose to test.
 
 ### 4. Third-Party Services

@@ -1,5 +1,5 @@
 /* 
- * MockFill - Premium Design Stylesheet
+ * InstaFill - Premium Design Stylesheet
  * Integrates glassmorphism, glowing gradients, and fluid transitions.
  */
 
@@ -42,7 +42,7 @@ body {
 }
 
 /* Container Structure */
-.mockfill-container {
+.instafill-container {
   display: flex;
   flex-direction: column;
   min-height: 480px;
@@ -52,7 +52,7 @@ body {
 }
 
 /* Header Styles */
-.mockfill-header {
+.instafill-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -434,7 +434,7 @@ body {
 }
 
 /* Footer Section */
-.mockfill-footer {
+.instafill-footer {
   margin-top: auto;
   display: flex;
   flex-direction: column;

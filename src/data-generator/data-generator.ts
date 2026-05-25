@@ -1,11 +1,11 @@
 // @ts-nocheck
 import RandExp from 'randexp';
 /**
- * MockFill - Data Generator
+ * InstaFill - Data Generator
  * Provides highly realistic, region-profiled (US and India),
  * and semantically consistent mock datasets.
  */
-class MockFillDataGenerator {
+class InstaFillDataGenerator {
   constructor() {
     // 1. UNITED STATES DATASET (High fidelity)
     this.us = {
@@ -59,7 +59,7 @@ class MockFillDataGenerator {
 
     // 3. GENERAL TEXTAREA TEMPLATES
     this.textareaTemplates = [
-      "We are validating this form using the MockFill browser extension. The execution context is running perfectly.",
+      "We are validating this form using the InstaFill browser extension. The execution context is running perfectly.",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.",
       "The automation pipeline triggered all change and input events successfully. Looking forward to conducting more automated testing passes.",
       "Please review our submission and feel free to reach out to me with any queries regarding this test run."
@@ -278,4 +278,4 @@ class MockFillDataGenerator {
   }
 }
 
-export { MockFillDataGenerator };
+export { InstaFillDataGenerator };

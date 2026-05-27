@@ -3,7 +3,7 @@
     "message": "InstaFill"
   },
   "extensionDescription": {
-    "message": "A professional mock data form-filling extension for developers and QA engineers."
+    "message": "A professional form-filling extension for developers and QA engineers."
   },
   "fillFormButton": {
     "message": "Fill Entire Form"

@@ -1,6 +1,6 @@
 {
   "name": "instafill",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A professional mock data form-filling extension for developers and QA engineers. Features smart form crawling, regional data profiling, custom field overrides, and automated dependent dropdown (Country ➔ State ➔ City) cascade handling.",
   "main": "background.js",
   "scripts": {

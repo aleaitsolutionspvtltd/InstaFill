@@ -271,7 +271,7 @@ class InstaFillDataGenerator {
   jsonStaticValues() {
     return JSON.stringify({
       "status": "active",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "debug": false,
       "retry_attempts": this._randomInt(3, 5)
     }, null, 2);
